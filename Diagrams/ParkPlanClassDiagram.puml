@@ -1,0 +1,55 @@
+@startuml ParkPlan
+
+package "HomePage" {
+  [HomePage.js] - [homepage.css]
+  [HomePage.js] ..> [Welcome.jsx]
+  [HomePage.js] ..> [Explore.jsx]
+  [HomePage.js] ..> [Buttons.jsx]
+  [HomePage.js] ..> [HighlightGallery.jsx]
+  
+}
+
+package "ParkInfo" {
+  [ParkInfo.js] - [parkinfo.css]
+  [ParkInfo.js] ..> [ParkInfoComponent.jsx]
+}
+
+package "ParkSearch" {
+  [ParkSearch.js] - [parkSearch.css]
+  [ParkSearch.js] ..> [ParkSearchWelcome.jsx]
+  [ParkSearch.js] ..> [ActivitiesList.jsx]
+  [ParkSearch.js] ..> [FetchParks.js]
+  [ParkSearch.js] ..> [Activities.js]
+}
+
+package "GlobalComponents" {
+  [Navbar.jsx] - [navbar.css]
+  [Footer.jsx]
+}
+
+[Welcome.jsx] ..> [Navbar.jsx] : includes
+[Explore.jsx] ..> [Navbar.jsx] : includes
+[Buttons.jsx] ..> [Navbar.jsx] : includes
+[ParkInfoComponent.jsx] ..> [Navbar.jsx] : includes
+[ParkSearchWelcome.jsx] ..> [Navbar.jsx] : includes
+[ActivitiesList.jsx] ..> [Navbar.jsx] : includes
+
+[Welcome.jsx] ..> [Footer.jsx] : includes
+[Explore.jsx] ..> [Footer.jsx] : includes
+[Buttons.jsx] ..> [Footer.jsx] : includes
+[ParkInfoComponent.jsx] ..> [Footer.jsx] : includes
+[ParkSearchWelcome.jsx] ..> [Footer.jsx] : includes
+[ActivitiesList.jsx] ..> [Footer.jsx] : includes
+
+[public/index.html] -right-> [HomePage.js]
+[public/index.html] -right-> [ParkPlan.js]
+[public/index.html] -right-> [ParkInfo.js]
+[public/index.html] -right-> [ParkSearch.js]
+
+[React] -up-> [index.js]
+[React Router] -up-> [index.js]
+
+index.js -right-> [Navbar.jsx]
+index.js -right-> [Footer.jsx]
+
+@enduml
