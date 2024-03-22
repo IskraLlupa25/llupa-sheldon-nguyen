@@ -27,9 +27,18 @@ package GlobalComponents {
   [Footer.jsx]
 }
 
+package TempleNews {
+  [TempleNewsComponent.jsx]
+}
+
+[TempleNews.js] .up.> TempleNews
+
+[index.js] - [Navbar.jsx]
+
 GlobalComponents <|-down- HomePage
 GlobalComponents <|-down- ParkInfo
 GlobalComponents <|-down- ParkSearch
+GlobalComponents <|-left- TempleNews
 'HomePage .up.> GlobalComponents
 'ParkInfo .up.> GlobalComponents
 'ParkSearch ..> GlobalComponents
