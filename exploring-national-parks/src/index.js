@@ -17,6 +17,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import ParkSearch from './ParkSearch.js';
 import ParkInfo from './ParkInfo.js';
+import TempleNews from './TempleNews.js';
 import HomePage from './HomePage.js';
 import ParkPlan from './ParkPlan.js';
 import Navbar from './GlobalComponents/Navbar.jsx';
@@ -31,6 +32,7 @@ root.render(
             <Navbar />
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/TempleNews" element={<TempleNews />} />
                 <Route path="/ParkSearch" element={<ParkSearch />} />
                 <Route path="/ParkInfo" element={<ParkInfo />} />
                 <Route path="/ParkPlan" element={<ParkPlan />} />
