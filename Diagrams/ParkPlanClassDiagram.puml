@@ -1,6 +1,6 @@
 @startuml ParkPlan
 
-package "HomePage" {
+package HomePage {
   [HomePage.js] - [homepage.css]
   [HomePage.js] ..> [Welcome.jsx]
   [HomePage.js] ..> [Explore.jsx]
@@ -9,12 +9,12 @@ package "HomePage" {
   
 }
 
-package "ParkInfo" {
+package ParkInfo {
   [ParkInfo.js] - [parkinfo.css]
   [ParkInfo.js] ..> [ParkInfoComponent.jsx]
 }
 
-package "ParkSearch" {
+package ParkSearch {
   [ParkSearch.js] - [parkSearch.css]
   [ParkSearch.js] ..> [ParkSearchWelcome.jsx]
   [ParkSearch.js] ..> [ActivitiesList.jsx]
@@ -22,34 +22,41 @@ package "ParkSearch" {
   [ParkSearch.js] ..> [Activities.js]
 }
 
-package "GlobalComponents" {
+package GlobalComponents {
   [Navbar.jsx] - [navbar.css]
   [Footer.jsx]
 }
 
-[Welcome.jsx] ..> [Navbar.jsx] : includes
-[Explore.jsx] ..> [Navbar.jsx] : includes
-[Buttons.jsx] ..> [Navbar.jsx] : includes
-[ParkInfoComponent.jsx] ..> [Navbar.jsx] : includes
-[ParkSearchWelcome.jsx] ..> [Navbar.jsx] : includes
-[ActivitiesList.jsx] ..> [Navbar.jsx] : includes
+GlobalComponents <|-down- HomePage
+GlobalComponents <|-down- ParkInfo
+GlobalComponents <|-down- ParkSearch
+'HomePage .up.> GlobalComponents
+'ParkInfo .up.> GlobalComponents
+'ParkSearch ..> GlobalComponents
 
-[Welcome.jsx] ..> [Footer.jsx] : includes
-[Explore.jsx] ..> [Footer.jsx] : includes
-[Buttons.jsx] ..> [Footer.jsx] : includes
-[ParkInfoComponent.jsx] ..> [Footer.jsx] : includes
-[ParkSearchWelcome.jsx] ..> [Footer.jsx] : includes
-[ActivitiesList.jsx] ..> [Footer.jsx] : includes
+'[Welcome.jsx] ..> [Navbar.jsx]
+'[Explore.jsx] ..> [Navbar.jsx]
+'[Buttons.jsx] ..> [Navbar.jsx]
+'[ParkInfoComponent.jsx] ..> [Navbar.jsx]
+'[ParkSearchWelcome.jsx] ..> [Navbar.jsx]
+'[ActivitiesList.jsx] ..> [Navbar.jsx]
 
-[public/index.html] -right-> [HomePage.js]
-[public/index.html] -right-> [ParkPlan.js]
-[public/index.html] -right-> [ParkInfo.js]
-[public/index.html] -right-> [ParkSearch.js]
+'[Welcome.jsx] ..> [Footer.jsx]
+'[Explore.jsx] ..> [Footer.jsx]
+'[Buttons.jsx] ..> [Footer.jsx]
+'[ParkInfoComponent.jsx] ..> [Footer.jsx]
+'[ParkSearchWelcome.jsx] ..> [Footer.jsx]
+'[ActivitiesList.jsx] ..> [Footer.jsx]
 
-[React] -up-> [index.js]
-[React Router] -up-> [index.js]
+'[public/index.html] -right-> [HomePage.js]
+'[public/index.html] -right-> [ParkPlan.js]
+'[public/index.html] -right-> [ParkInfo.js]
+'[public/index.html] -right-> [ParkSearch.js]
 
-index.js -right-> [Navbar.jsx]
-index.js -right-> [Footer.jsx]
+'[React] -up-> [index.js]
+'[React Router] -up-> [index.js]
+
+'index.js -right-> [Navbar.jsx]
+'index.js -right-> [Footer.jsx]
 
 @enduml
