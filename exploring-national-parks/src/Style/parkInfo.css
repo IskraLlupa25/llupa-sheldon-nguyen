@@ -16,6 +16,32 @@
     cursor: pointer;
 }
 
+/*
+addition of rating button (looks like a star)
+*/
+
+.park-info-rating-button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: white;
+}
+
+.park-info-rating-button:hover {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.stars{
+  cursor: pointer;
+}
+
+.checked {
+    color: orange;
+}
+
 a{
     text-decoration: none;
 }

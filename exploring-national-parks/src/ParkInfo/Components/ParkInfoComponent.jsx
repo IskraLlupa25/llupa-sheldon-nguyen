@@ -47,6 +47,8 @@ function ParkInfoComponent() {
         fetchData();
     }, []);
 
+
+
     if(parkJSON.length>1){ //list all the parks
         return (
             <div className="top-padding-info">
@@ -85,14 +87,40 @@ function ParkInfoComponent() {
         );
     }
     else{ //detail for one park
+        const stars = document.querySelectorAll(".stars");
+        var clicked = false;
+        stars.forEach((star, index1) => {
+          star.addEventListener("click", () => {
+            if (clicked == true) {
+                star.classList.remove("checked");
+                clicked = false;
+            } else {
+                star.classList.add("checked");
+                clicked = true;
+            }
+          });
+        });
+
         return (
+
             <div className='park-info'>
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
                     {parkJSON?.map((park) => (
                         <>
                         <div key={park.id} className="parkInfo" style={{ backgroundImage: 'url(' + park.images[0].url + ')', backgroundSize: 'auto' }}>
                             <div className='park-info-welcome'>
                                 <center>
                                     <h1 id="info-title">{park.fullName}</h1>
+                                    <button className="park-info-rating-button">
+                                        <div class="stars">
+                                            <span class="fa fa-star fa-2x"></span>
+                                            <span class="fa fa-star fa-2x"></span>
+                                            <span class="fa fa-star fa-2x"></span>
+                                            <span class="fa fa-star fa-2x"></span>
+                                            <span class="fa fa-star fa-2x"></span>
+                                        </div>
+                                    </button>
+
                                     <h2>Park Information</h2>
                                     <address>{park.addresses[0].line1}<br></br>
                                         {park.addresses[0].city}, 
@@ -145,6 +173,7 @@ function ParkInfoComponent() {
                         </>
                     ))}
             </div>
+
         );
     }
 }
