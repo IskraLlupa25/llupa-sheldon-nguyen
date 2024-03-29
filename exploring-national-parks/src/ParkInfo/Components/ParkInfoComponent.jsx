@@ -11,10 +11,12 @@ import React, { useState, useEffect } from 'react';
 import { ParkInfo } from '../Functionality/ParkInfo'; // Importing the functionality
 import '../../Style/parkInfo.css';
 import ParkVideos from './ParkVideos';
+import StarRating from '../../StarRating.js'
+
 
 function ParkInfoComponent() {
     const [parkJSON, setParks] = useState([]);
-    
+
     var url = new URL(window.location);
     var page = 0;
     page = url.searchParams.get("page");
@@ -26,7 +28,7 @@ function ParkInfoComponent() {
         pageDown = 0;
 
     const parkCode = url.searchParams.get("parkCode");
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -71,7 +73,7 @@ function ParkInfoComponent() {
                                         <p className="learn-more-name">{park.fullName}</p>
                                         <p>{park.states}</p>
                                     </div>
-                                    
+
                                 </div>
                                     <img src={park.images.length !== 0  ? park.images[0].url : ''} alt='' width='100' height='300'/>
                             </div>
@@ -87,11 +89,12 @@ function ParkInfoComponent() {
         );
     }
     else{ //detail for one park
+        /*
         const stars = document.querySelectorAll(".stars");
         var clicked = false;
         stars.forEach((star, index1) => {
           star.addEventListener("click", () => {
-            if (clicked == true) {
+            if (clicked === true) {
                 star.classList.remove("checked");
                 clicked = false;
             } else {
@@ -100,7 +103,7 @@ function ParkInfoComponent() {
             }
           });
         });
-
+        */
         return (
 
             <div className='park-info'>
@@ -112,18 +115,12 @@ function ParkInfoComponent() {
                                 <center>
                                     <h1 id="info-title">{park.fullName}</h1>
                                     <button className="park-info-rating-button">
-                                        <div class="stars">
-                                            <span class="fa fa-star fa-2x"></span>
-                                            <span class="fa fa-star fa-2x"></span>
-                                            <span class="fa fa-star fa-2x"></span>
-                                            <span class="fa fa-star fa-2x"></span>
-                                            <span class="fa fa-star fa-2x"></span>
-                                        </div>
+                                        <StarRating />
                                     </button>
 
                                     <h2>Park Information</h2>
                                     <address>{park.addresses[0].line1}<br></br>
-                                        {park.addresses[0].city}, 
+                                        {park.addresses[0].city},
                                         {park.addresses[0].stateCode}<br></br>
                                     </address>
                                     <br></br>
@@ -161,14 +158,14 @@ function ParkInfoComponent() {
                             </center>
 
                             <br></br>
-                            
+
                             <div className='activities-list'>
                                 {park.activities?.map((activity) =>(<>
                                 <div className='activity'><p key={activity.id}>{activity.name}</p></div></>))}
                             </div>
 
-                            
-                            
+
+
                         </div>
                         </>
                     ))}

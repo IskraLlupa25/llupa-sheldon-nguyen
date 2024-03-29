@@ -34,8 +34,13 @@ addition of rating button (looks like a star)
   transform: translateY(4px);
 }
 
-.stars{
+input[type="radio"] {
+  display: none;
+}
+
+.stars {
   cursor: pointer;
+  font-size: 32px;
 }
 
 .checked {
