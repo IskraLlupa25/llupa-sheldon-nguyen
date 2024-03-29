@@ -4,7 +4,7 @@ title Park Plan Sequence
 actor User
 participant HTML
 participant "ReactComponent/JS" as RCJS
-participant "NPSAPI (backend)" as NPSAPI
+participant "Temple News API (backend)" as TUAPI
 
 activate User
 activate HTML
@@ -12,49 +12,27 @@ activate HTML
 User -> HTML : HTTP Request
 User <-- HTML : HTTP Response
 
-HTML -> RCJS : Loads
+HTML -> RCJS: loads
 activate RCJS
 
 RCJS -> RCJS : useEffect()
-RCJS -> NPSAPI : asynchronous fetch()
-activate NPSAPI
+RCJS -> TUAPI : asynchronous fetch()
+activate TUAPI
 
-RCJS <-- NPSAPI : json of parks
-deactivate NPSAPI
+RCJS <-- TUAPI : json of Temple News
+deactivate TUAPI
 
-RCJS -> RCJS : useEffect()
-RCJS -> NPSAPI : asynchronous fetch()
-activate NPSAPI
-
-RCJS <-- NPSAPI : json of activities
-deactivate NPSAPI
-
-RCJS --> HTML : Update State
+HTML <-- RCJS: updates page
 deactivate RCJS
 
-User -> HTML : uses select tag\n to choose park
-User <-- HTML : Display Result
+User -> HTML: rates individual park
 
-User -> HTML : uses select tag\nto choose activities
-User <-- HTML : Display Result
-
-User -> HTML : uses calendar input\n to choose dates
-User <-- HTML : Display Result
-
-User -> HTML : Clicks "plan trip"\nbutton
-HTML -> RCJS : Loads
+HTML -> RCJS: Loads
 activate RCJS
 
-RCJS -> RCJS : useEffect()
-RCJS -> NPSAPI : asynchronous fetch()
-activate NPSAPI
-
-RCJS <-- NPSAPI : json of alerts
-deactivate NPSAPI
-
-HTML <-- RCJS : Update State
+RCJS -> RCJS: StarRating()
+HTML <-- RCJS: updates page
 deactivate RCJS
 
-User <-- HTML : Display Result
 
 @enduml
