@@ -11,6 +11,8 @@ package HomePage {
 
 package ParkInfo {
   [ParkInfo.js] - [parkinfo.css]
+  [StarRating.js] - [parkinfo.css]
+  [StarRating.js] ..> [ParkInfoComponent.jsx]
   [ParkInfo.js] ..> [ParkInfoComponent.jsx]
 }
 
